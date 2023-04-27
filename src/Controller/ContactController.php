@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\Routing\Annotation\Route;
 
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/../../.env');
