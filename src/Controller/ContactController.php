@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/../../.env');
@@ -35,7 +36,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", methods={"POST"})
      */
-    function contactAction(Request $request, ManagerRegistry $doctrine)
+    function contactAction(Request $request, ManagerRegistry $doctrine): JsonResponse
     {
         // Retrieve form data from the request
         $expediteur = $request->request->get('expediteur');
@@ -115,7 +116,4 @@ class ContactController extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-    public static function getSubscribedServices(): array
-    {}
-
 }
