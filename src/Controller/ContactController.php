@@ -4,40 +4,27 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Routing\Annotation\Route;
-
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/../../.env');
 
 class ContactController extends AbstractController
 {
-    /**
-     * Constructor by default
-     */
+    private Dotenv $dotenv;
+
     public function __construct()
     {
+        $this->dotenv = new Dotenv();
+        $this->dotenv->load(__DIR__ . '/../../.env');
     }
-
-    // /**
-    //  * @Route("/", name="app_contact")
-    //  */
-    // public function index(): Response
-    // {
-    //     return $this->render('contact/index.html.twig', [
-    //         'controller_name' => 'ContactController',
-    //     ]);
-    // }
 
     /**
      * @Route("/contact", methods={"POST"})
      */
-    function contactAction(Request $request, ManagerRegistry $doctrine): JsonResponse
+    public function contactAction(Request $request, ManagerRegistry $doctrine): JsonResponse
     {
         // Retrieve form data from the request
         $expediteur = $request->request->get('expediteur');

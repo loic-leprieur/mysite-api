@@ -16,20 +16,25 @@ class Message
     private int $id = 0;
 
     #[ORM\Column(length: 255)]
-    #[NotNull()]
+    #[NotNull]
     private string $email;
 
     #[ORM\Column(length: 255)]
-    #[NotNull()]
+    #[NotNull]
     private string $expediteur;
 
     #[ORM\Column(length: 800)]
-    #[NotNull()]
+    #[NotNull]
     private string $message;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    #[NotNull()]
+    #[NotNull]
     private string $created_at;
+
+    public function __construct()
+    {
+        $this->created_at = date('m/d/Y h:i:s a', time());
+    }
 
     public function getId(): ?int
     {
