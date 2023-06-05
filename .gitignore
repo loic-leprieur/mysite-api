@@ -10,3 +10,5 @@
 ###< symfony/framework-bundle ###
 /.idea/
 composer.lock
+!/bin/
+!/config/packages/*
